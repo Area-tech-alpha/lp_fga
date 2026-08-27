@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import SignupForm from './SignupForm';
 import VideoEmbed from './VideoEmbed';
 import { MedalIcon, PresentationIcon } from './icons';
@@ -9,12 +10,25 @@ export default function LiveSection() {
     <section className="relative overflow-hidden bg-black py-16 sm:py-24">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-10 flex justify-center overflow-hidden sm:top-16">
-        <span
-          className="select-none whitespace-nowrap text-center font-display leading-none text-white/[0.08]"
-          style={{ fontSize: 'clamp(150px, 40vw, 760px)' }}>
-          FGA
-        </span>
+        className="pointer-events-none absolute inset-x-0 top-10 flex justify-center overflow-hidden opacity-[0.08] sm:top-16">
+        <div className="relative w-[80vw] max-w-[1100px]" style={{ aspectRatio: '1920 / 1080' }}>
+          <Image src="/logo.PNG" alt="" fill className="object-contain" />
+        </div>
+      </div>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-10 right-0 hidden h-40 w-40 overflow-hidden opacity-[0.08] sm:block lg:h-56 lg:w-56"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: 'url(/logo.PNG)',
+            backgroundSize: '500% auto',
+            backgroundPosition: '100% 50%',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
       </div>
 
       <div className="relative mx-auto max-w-6xl px-6">
