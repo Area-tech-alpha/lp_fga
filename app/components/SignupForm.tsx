@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function SignupForm({ idPrefix }: { idPrefix: string }) {
   const [submitted, setSubmitted] = useState(false);
@@ -17,16 +17,11 @@ export default function SignupForm({ idPrefix }: { idPrefix: string }) {
       </h3>
 
       {submitted ? (
-        <p className="mt-6 text-center font-semibold text-black">
-          Inscrição recebida! Em breve entraremos em contato.
-        </p>
+        <p className="mt-6 text-center font-semibold text-black">Inscrição recebida! Em breve entraremos em contato.</p>
       ) : (
         <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
           <div>
-            <label
-              htmlFor={`${idPrefix}-nome`}
-              className="mb-1 block text-sm font-semibold text-black"
-            >
+            <label htmlFor={`${idPrefix}-nome`} className="mb-1 block text-sm font-semibold text-black">
               Nome:
             </label>
             <input
@@ -39,10 +34,7 @@ export default function SignupForm({ idPrefix }: { idPrefix: string }) {
           </div>
 
           <div>
-            <label
-              htmlFor={`${idPrefix}-email`}
-              className="mb-1 block text-sm font-semibold text-black"
-            >
+            <label htmlFor={`${idPrefix}-email`} className="mb-1 block text-sm font-semibold text-black">
               Email:
             </label>
             <input
@@ -55,10 +47,7 @@ export default function SignupForm({ idPrefix }: { idPrefix: string }) {
           </div>
 
           <div>
-            <label
-              htmlFor={`${idPrefix}-telefone`}
-              className="mb-1 block text-sm font-semibold text-black"
-            >
+            <label htmlFor={`${idPrefix}-telefone`} className="mb-1 block text-sm font-semibold text-black">
               Número para contato:
             </label>
             <input
@@ -72,9 +61,8 @@ export default function SignupForm({ idPrefix }: { idPrefix: string }) {
 
           <button
             type="submit"
-            className="mx-auto block rounded-md bg-gradient-to-r from-[#f7931e] to-[#ffc700] px-6 py-3 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
-          >
-            Quero participar da call exclusiva
+            className="mx-auto block rounded-md bg-gradient-to-r from-[#f7931e] to-[#ffc700] px-6 py-3 text-sm font-bold text-black transition-transform hover:scale-[1.02]">
+            Quero receber o link
           </button>
         </form>
       )}
