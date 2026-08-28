@@ -18,15 +18,14 @@ export default function LiveSection() {
 
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-10 right-0 hidden h-40 w-40 overflow-hidden opacity-[0.08] sm:block lg:h-56 lg:w-56"
-      >
+        className="pointer-events-none absolute bottom-10 right-0 hidden h-40 w-40 overflow-hidden opacity-[0.08] sm:block lg:h-56 lg:w-56">
         <div
           className="absolute inset-0"
           style={{
             backgroundImage: 'url(/logo.PNG)',
             backgroundSize: '500% auto',
             backgroundPosition: '100% 50%',
-            backgroundRepeat: 'no-repeat',
+            backgroundRepeat: 'no-repeat'
           }}
         />
       </div>
@@ -64,7 +63,7 @@ export default function LiveSection() {
               <span className="font-script text-lg italic text-black/70 line-through">de R$69,90</span>
               <span className="font-display text-5xl text-black sm:text-6xl">
                 <span className="align-top text-2xl font-normal italic sm:text-3xl">por </span>
-                R$39,90
+                R$0,00
               </span>
             </div>
           </div>
