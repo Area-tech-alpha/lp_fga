@@ -2,6 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { getPool } from './lib/db';
+import { appendLeadToSheet } from './lib/sheets';
 
 const WHATSAPP_GROUP_URL = 'https://chat.whatsapp.com/JKIuFIWSIvaEM6rkA6BT5S?mode=gi_t';
 
@@ -38,10 +39,17 @@ export async function submitSignup(idPrefix: string, _prevState: SignupState, fo
   }
 
   await ensureSchema();
-  await getPool().query(
-    'INSERT INTO inscricoes (nome, email, telefone, origem) VALUES ($1, $2, $3, $4)',
+  const { rows } = await getPool().query(
+    'INSERT INTO inscricoes (nome, email, telefone, origem) VALUES ($1, $2, $3, $4) RETURNING id, created_at',
     [nome, email, telefone, idPrefix]
   );
+  const { id, created_at: createdAt } = rows[0];
+
+  try {
+    await appendLeadToSheet({ id, nome, email, telefone, origem: idPrefix, createdAt });
+  } catch (error) {
+    console.error('Failed to sync lead to Google Sheets:', error);
+  }
 
   redirect(WHATSAPP_GROUP_URL);
 }
