@@ -29,6 +29,23 @@ export type SheetLead = {
   createdAt: string | Date;
 };
 
+const BRASILIA_OFFSET_MS = 3 * 60 * 60 * 1000;
+
+function formatToBrasiliaTime(createdAt: string | Date): string {
+  const utcDate = typeof createdAt === 'string' ? new Date(createdAt) : createdAt;
+  const brasiliaDate = new Date(utcDate.getTime() - BRASILIA_OFFSET_MS);
+  const pad = (n: number) => String(n).padStart(2, '0');
+
+  const day = pad(brasiliaDate.getUTCDate());
+  const month = pad(brasiliaDate.getUTCMonth() + 1);
+  const year = brasiliaDate.getUTCFullYear();
+  const hours = pad(brasiliaDate.getUTCHours());
+  const minutes = pad(brasiliaDate.getUTCMinutes());
+  const seconds = pad(brasiliaDate.getUTCSeconds());
+
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+}
+
 export async function appendLeadToSheet(lead: SheetLead) {
   try {
     const sheets = getSheetsClient();
@@ -38,7 +55,14 @@ export async function appendLeadToSheet(lead: SheetLead) {
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [
-          [lead.id, lead.nome, lead.email, lead.telefone, lead.origem, lead.createdAt],
+          [
+            lead.id,
+            lead.nome,
+            lead.email,
+            lead.telefone,
+            lead.origem,
+            formatToBrasiliaTime(lead.createdAt),
+          ],
         ],
       },
     });
